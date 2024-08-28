@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: "PT Root UI VF", system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.horizontal,
+.vertical {
+  stroke: #999999;
+  stroke-width: 1;
+  stroke-dasharray: 4;
+}
+
+circle {
+  fill: gray;
+  r: 4;
+}
