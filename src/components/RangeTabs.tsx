@@ -1,24 +1,24 @@
-import React from "react";
 import { RangeValues } from "../store/types";
 import clsx from "clsx";
 import { useChartStore } from "../store/useStore";
 import IconButton from "./IconButton";
-import { AddCircle } from "../icons/AddCircle";
 import { FullScreen } from "../icons/FullScreen";
+import { CompareMenu } from "./CompareMenu";
 
 const RangeTabs = () => {
   const selectedRange = useChartStore().currentRange;
   const setSelectedRange = useChartStore().setCurrentRange;
+  const toggleFullScreen = useChartStore().toggleFullScreen;
 
   return (
     <div className="flex justify-between items-center pr-32">
       <div className="flex items-center gap-3">
         <IconButton
-          onClick={() => {}}
+          onClick={() => toggleFullScreen()}
           icon={<FullScreen />}
           title="Full Screen"
         />
-        <IconButton onClick={() => {}} icon={<AddCircle />} title="Compare" />
+        <CompareMenu />
       </div>
       <div className="flex gap-1 w-1/2 items-center justify-evenly">
         {Object.values(RangeValues).map((value) => (

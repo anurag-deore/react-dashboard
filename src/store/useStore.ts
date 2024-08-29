@@ -3,7 +3,7 @@ import { devtools } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
 
 import { StoreApi, UseBoundStore } from "zustand";
-import { NavTabsValues, RangeValues } from "./types";
+import { AvailableCharts, NavTabsValues, RangeValues } from "./types";
 
 type WithSelectors<S> = S extends { getState: () => infer T }
   ? S & { use: { [K in keyof T]: () => T[K] } }
@@ -23,34 +23,71 @@ const createSelectors = <S extends UseBoundStore<StoreApi<object>>>(
 };
 
 type State = {
-  latestPrice: number;
+  latestPrice: Array<{
+    chart: AvailableCharts;
+    value: number;
+    difference?: string;
+  }>;
+  isFullScreen: boolean;
   currentRange: RangeValues;
   selectedTab: NavTabsValues;
+  selectedCharts: AvailableCharts[];
 };
 
 type Actions = {
   setCurrentRange: (range: RangeValues) => void;
-  setLatestPrice: (price: number) => void;
+  setLatestPrice: (
+    chart: AvailableCharts,
+    price: number,
+    difference?: string
+  ) => void;
   setSelectedTab: (tab: NavTabsValues) => void;
+  updateSelectedCharts: (charts: AvailableCharts[]) => void;
+  toggleFullScreen: () => void;
 };
 
 export const useCountStore = create<State & Actions>()(
   devtools(
     immer((set) => ({
-      latestPrice: 0,
+      latestPrice: [{ chart: AvailableCharts.Chart1, value: 0 }],
       currentRange: RangeValues["6m"],
       selectedTab: NavTabsValues.Chart,
+      selectedCharts: [AvailableCharts.Chart1],
+      isFullScreen: false,
       setCurrentRange: (range: RangeValues) =>
         set((state) => {
           state.currentRange = range;
         }),
-      setLatestPrice: (price: number) =>
+      setLatestPrice: (
+        chart: AvailableCharts,
+        price: number,
+        difference?: string
+      ) =>
         set((state) => {
-          state.latestPrice = price;
+          if (price < 0 || !chart) return;
+          const index = state.latestPrice.findIndex((lp) => lp.chart === chart);
+          if (index >= 0) {
+            state.latestPrice[index] = { chart, value: price, difference };
+          } else {
+            state.latestPrice.push({ chart, value: price, difference });
+          }
         }),
       setSelectedTab: (tab: NavTabsValues) =>
         set((state) => {
           state.selectedTab = tab;
+        }),
+      updateSelectedCharts: (charts: AvailableCharts[]) =>
+        set((state) => {
+          state.selectedCharts = charts;
+          if (state.latestPrice.length > state.selectedCharts.length) {
+            state.latestPrice = state.latestPrice.filter((lp) =>
+              state.selectedCharts.includes(lp.chart)
+            );
+          }
+        }),
+      toggleFullScreen: () =>
+        set((state) => {
+          state.isFullScreen = !state.isFullScreen;
         }),
     }))
   )

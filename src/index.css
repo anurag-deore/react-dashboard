@@ -24,3 +24,6 @@ circle {
   fill: gray;
   r: 4;
 }
+.grid .domain {
+  stroke: none !important;
+}
