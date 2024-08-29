@@ -17,3 +17,8 @@ export enum NavTabsValues {
   Analysis = "Analysis",
   Settings = "Settings",
 }
+
+export enum AvailableCharts {
+  Chart1 = "Apple",
+  Chart2 = "Google",
+}
