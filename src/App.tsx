@@ -5,6 +5,7 @@ import StockPrice from "./components/StockPrice";
 import NavTabs from "./components/NavTabs";
 import { useChartStore } from "./store/useStore";
 import clsx from "clsx";
+import ChatBox from "./components/ChartInfo";
 
 const App: React.FC = () => {
   const isFullScreen = useChartStore().isFullScreen;
@@ -23,6 +24,7 @@ const App: React.FC = () => {
           <AreaChart />
         </div>
       </div>
+      {!isFullScreen && <ChatBox />}
     </div>
   );
 };
