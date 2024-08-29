@@ -392,11 +392,11 @@ const AreaChart: React.FC = () => {
           const labelBg = crosshair.select("#crosshairLabelBackground" + index);
 
           labelBg.attr("x", width - margin.right - 20).attr("y", closestY - 15);
-
-          const labelBBox = crosshair
-            .select("#crosshairLabelBackground" + index)!
-            .node()!
-            .getBBox();
+          const labelBBox = (
+            crosshair
+              .select("#crosshairLabelBackground" + index)
+              .node()! as SVGGraphicsElement
+          ).getBBox();
 
           crosshair
             .select("#crosshairLabel" + index)

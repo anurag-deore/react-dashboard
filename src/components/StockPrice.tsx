@@ -1,4 +1,3 @@
-import React from "react";
 import { useChartStore } from "../store/useStore";
 import clsx from "clsx";
 
