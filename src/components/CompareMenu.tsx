@@ -43,9 +43,9 @@ export function CompareMenu() {
               <div
                 onClick={() => onSelect(chart)}
                 className={clsx(
-                  "flex px-2 items-center text-tertiary justify-between cursor-pointer",
+                  "flex px-2 items-center text-tertiary justify-between",
                   "gap-2 rounded-md hover:bg-gray-100 p-1",
-                  index == 0 && "cursor-not-allowed"
+                  index === 0 ? "cursor-not-allowed" : "cursor-pointer"
                 )}
               >
                 <span className="font-medium">{chart}</span>

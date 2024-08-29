@@ -3,7 +3,9 @@
 @tailwind utilities;
 
 :root {
-  font-family: "PT Root UI VF", system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* font-family: "IBM Plex Sans", sans-serif; */
+  font-family: "Satoshi", sans-serif;
+
   line-height: 1.5;
   font-weight: 400;
 
