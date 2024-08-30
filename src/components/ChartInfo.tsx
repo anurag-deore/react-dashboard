@@ -18,22 +18,45 @@ const ChatBox = () => {
         <InfoIcon />
       </button>
       <div
-        className="fixed overflow-hidden border-2 bottom-16 right-4 bg-white rounded shadow-xl transition-all"
+        className="fixed overflow-hidden border-2 dark:border-darkGray bottom-16 right-4 bg-white dark:bg-appbg-dark rounded shadow-xl transition-all"
         style={{
           width: isOpen ? "400px" : "0px",
           height: isOpen ? "70vh" : "0px",
         }}
       >
         {isOpen && (
-          <div className="p-4 text-secondary font-normal flex flex-col max-h-full gap-3 overflow-y-auto">
+          <div className="p-4 text-secondary dark:text-white font-normal flex flex-col max-h-full gap-3 overflow-y-auto">
             <h3 className="font-semibold border-b pb-3 text-xl">
-              About this chart
+              About this Dashboard
             </h3>
+            <div>Suggested Ideas (Could not be implemented due to time constraint)</div>
+            <hr />
+            <ul className="list-disc ml-5 flex flex-col gap-3">
+              <li>
+                On Clicking on Statistics, the area chart would fade in the background and the volume bars in the Bottom would be highligted as bar chart.
+              </li>
+              <li>
+                Settings to enable or disable axis labels and change time range.
+              </li>
+              <li>
+                Option to download the chart as an image or data
+              </li>
+            <li>
+              Clicking on Year wise analysis, each year will open a panel to view monthly analysis.
+            </li>
+              <li>
+                Improve colors for dark mode
+              </li>
+              </ul>
+            <br />
+            <br />
+            <div>Assumptions</div>
+            <hr />
             <ul className="list-disc ml-5 flex flex-col gap-3">
               <li>
                 This chart is prepared using apple stock dataset <br />
                 <a
-                  className="text-blue-800"
+                  className="text-blue-800 dark:text-blue-300"
                   href="https://www.kaggle.com/datasets/tarunpaparaju/apple-aapl-historical-stock-data"
                 >
                   Dataset

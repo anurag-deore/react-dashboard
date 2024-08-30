@@ -41,3 +41,12 @@ circle {
   background-color: lightgray;
   border-radius: 8px;
 }
+
+
+.dark .gridStroke{
+  stroke:#2D3748;
+}
+
+.gridStroke{
+  stroke:#E2E4E7;
+}

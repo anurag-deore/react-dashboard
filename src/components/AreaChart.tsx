@@ -192,21 +192,28 @@ const AreaChart: React.FC = () => {
           .tickFormat(() => "")
       )
       .selectAll(".tick line")
-      .attr("stroke", "#E2E4E7");
+      .attr("class","gridStroke")
+      // .attr("stroke", "#E2E4E7");
 
     svg
       .append("g")
       .attr("transform", `translate(0,${height - margin.bottom})`)
       .call(d3.axisBottom(x).tickSize(0).tickValues([]))
       .select("path")
-      .attr("stroke", "#E2E4E7");
+      .attr("class","gridStroke")
+
+      // .attr("stroke", "#E2E4E7");
 
     svg
       .append("g")
       .attr("transform", `translate(${margin.left},0)`)
       .call(d3.axisLeft(y).tickSize(0))
       .select("path")
-      .attr("stroke", "#E2E4E7");
+      // .attr("stroke", "#E2E4E7");
+      .attr("class","gridStroke")
+
+
+
     datasets.forEach((chartData, index) => {
       const gradient = svg
         .append("defs")
