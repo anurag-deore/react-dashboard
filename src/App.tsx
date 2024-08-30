@@ -1,27 +1,41 @@
 // app.tsx
-import React from "react";
-import AreaChart from "./components/AreaChart";
+import React, { useEffect } from "react";
 import StockPrice from "./components/StockPrice";
 import NavTabs from "./components/NavTabs";
 import { useChartStore } from "./store/useStore";
 import clsx from "clsx";
 import ChatBox from "./components/ChartInfo";
+import Layout from "./screens/Layout";
 
 const App: React.FC = () => {
   const isFullScreen = useChartStore().isFullScreen;
+  const darkMode = useChartStore().theme === "dark";
+
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [darkMode]);
 
   return (
-    <div className="flex flex-col h-max max-w-[100vw] items-center bg-gray50">
+    <div
+      className={clsx(
+        "flex flex-col h-max min-h-screen max-w-[100vw] items-center p-3",
+        "bg-appbg-light dark:bg-appbg-dark text-textLight dark:text-textDark"
+      )}
+    >
       <div
         className={clsx(
-          "flex flex-col  h-full bg-white gap-10",
+          "flex flex-col grow h-full bg-white dark:bg-mainBg-dark gap-10 rounded-xl",
           isFullScreen ? "w-full" : "lg:w-[1000px] md:w-[1000px] w-full"
         )}
       >
         {!isFullScreen && <StockPrice />}
-        <div>
+        <div className="overflow-hidden">
           {!isFullScreen && <NavTabs />}
-          <AreaChart />
+          <Layout />
         </div>
       </div>
       {!isFullScreen && <ChatBox />}
