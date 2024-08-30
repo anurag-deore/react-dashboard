@@ -15,7 +15,7 @@ const StockPrice = () => {
           )}
         >
           <div className="flex items-start gap-2">
-            <div className="text-huge leading-none text-secondary">
+            <div className="text-huge leading-none text-secondary dark:text-secondaryDark">
               {price.value}
             </div>
             <div className="text-2xl pt-1 text-gray200">USD</div>

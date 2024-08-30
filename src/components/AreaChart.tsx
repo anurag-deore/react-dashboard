@@ -7,7 +7,7 @@ import { AvailableCharts, RangeValues } from "../store/types";
 import RangeTabs from "./RangeTabs";
 import { chartColors } from "../utils/constants";
 
-interface StockData {
+export interface StockData {
   Date: string;
   "Close/Last": number;
   Volume: number;
@@ -254,13 +254,14 @@ const AreaChart: React.FC = () => {
       const lastX = x(new Date(lastDataPoint.Date));
       const lastY = y(lastDataPoint["Close/Last"]);
 
-      const firstDataPoint = chartData[1];
+      const firstDataPoint = chartData[chartData.length - 1];
       const difference =
         lastDataPoint["Close/Last"] - firstDataPoint["Close/Last"];
       const diff = (difference / firstDataPoint["Close/Last"]) * 100;
-      const diffString = `${difference.toFixed(2)} (${
-        diff < 0 ? diff.toFixed(2) + "%" : "+" + diff.toFixed(2) + "%"
-      })`;
+      const diffString = `${difference < 0 ? "-" : "+"}${difference.toFixed(
+        2
+      )} (${diff.toFixed(2)}%)`;
+
       setStockPrice(
         selectedCharts[index],
         lastDataPoint["Close/Last"],

@@ -21,13 +21,15 @@ const ChatBox = () => {
         className="fixed overflow-hidden border-2 bottom-16 right-4 bg-white rounded shadow-xl transition-all"
         style={{
           width: isOpen ? "400px" : "0px",
-          height: isOpen ? "400px" : "0px",
+          height: isOpen ? "70vh" : "0px",
         }}
       >
         {isOpen && (
-          <div className="p-4 text-secondary font-medium flex flex-col gap-3">
-            <h3 className="font-semibold border-b text-xl">About this chart</h3>
-            <ul className="list-disc ml-5">
+          <div className="p-4 text-secondary font-normal flex flex-col max-h-full gap-3 overflow-y-auto">
+            <h3 className="font-semibold border-b pb-3 text-xl">
+              About this chart
+            </h3>
+            <ul className="list-disc ml-5 flex flex-col gap-3">
               <li>
                 This chart is prepared using apple stock dataset <br />
                 <a

@@ -23,6 +23,7 @@ const createSelectors = <S extends UseBoundStore<StoreApi<object>>>(
 };
 
 type State = {
+  theme: "light" | "dark";
   latestPrice: Array<{
     chart: AvailableCharts;
     value: number;
@@ -35,6 +36,7 @@ type State = {
 };
 
 type Actions = {
+  setTheme: (theme: "light" | "dark") => void;
   setCurrentRange: (range: RangeValues) => void;
   setLatestPrice: (
     chart: AvailableCharts,
@@ -54,6 +56,7 @@ export const useCountStore = create<State & Actions>()(
       selectedTab: NavTabsValues.Chart,
       selectedCharts: [AvailableCharts.Chart1],
       isFullScreen: false,
+      theme: "light",
       setCurrentRange: (range: RangeValues) =>
         set((state) => {
           state.currentRange = range;
@@ -89,6 +92,7 @@ export const useCountStore = create<State & Actions>()(
         set((state) => {
           state.isFullScreen = !state.isFullScreen;
         }),
+      setTheme: (theme: "light" | "dark") => set(() => ({ theme })),
     }))
   )
 );

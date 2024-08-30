@@ -28,7 +28,7 @@ const RangeTabs = () => {
               "rounded text-md font-medium flex-1",
               selectedRange === value
                 ? "bg-primary text-white rounded"
-                : "text-tertiary hover:text-secondary"
+                : "text-textLight dark:text-textDark hover:text-secondary"
             )}
             onClick={() => setSelectedRange(value)}
           >
